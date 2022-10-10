@@ -43,6 +43,7 @@ def into_buidlcamp_info(database, user_name, ip_address):
         'user_name': [user_name],
         'user_id': hashlib.sha224(bytes(user_name+str(datetime.datetime.now()).split(".")[0], encoding = "utf8")).hexdigest(),
         'ip_address': [ip_address],
+        'address': '0x0000000000000000000000000000000000000000',
         'created_time': [str(datetime.datetime.now()).split(".")[0]]
     })
     try:

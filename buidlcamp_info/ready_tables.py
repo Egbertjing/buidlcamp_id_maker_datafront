@@ -30,6 +30,7 @@ def create_buidlcamp_table(database, drop_table=False) -> None:
             user_name text null,
             user_id text null,
             ip_address text null,
+            address text null,
             created_time timestamp null
         );
     '''

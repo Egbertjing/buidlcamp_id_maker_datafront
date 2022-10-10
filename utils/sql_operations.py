@@ -6,28 +6,6 @@ import pandas as PD
 
 from utils import constants as CT
 
-from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
-
-def build_database(database=None) -> None:
-    con = psycopg2.connect(
-        user=CT.USER,
-        password=CT.PASSWORD,
-        host=CT.HOST,
-        port=CT.PORT
-    )
-
-    con.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
-
-    cursor = con.cursor()
-
-    sql_create_database = "create database " + database + ";"
-    try:
-        cursor.execute(sql_create_database)
-        print(f'*** {database} successfully build ***')
-    except:
-        print('Fail to build DATABASE')
-        sys.exit()
-
 def connect_sql(database, do_print=False):
     """
     connect_sql
