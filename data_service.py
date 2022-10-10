@@ -33,8 +33,8 @@ async def root(request: Request):
 def index():
     return {'message': 'Welcome to Buidl Camp'}
 
-@app.get('/budlecamp_get')
-async def get_budlecamp(request: Request, database=CT.DATABASE, user_name=None):
+@app.get('/buidlcamp_get')
+def get_budlecamp(request: Request, database=CT.DATABASE, user_name=None):
     try:
         final_result = BD.fetch_buidlcamp_info(database, user_name, request.client.host)
         return {
@@ -47,12 +47,12 @@ async def get_budlecamp(request: Request, database=CT.DATABASE, user_name=None):
             'data': []
         }
         
-@app.post('/budlecamp_post')
+@app.get('/buidlcamp_post')
 def budlecamp_post(request: Request, database=CT.DATABASE, user_name=None):
     try:
-        BD.into_buidlcamp_info(database, user_name, request.client.host)
+        final_result = BD.into_buidlcamp_info(database, user_name, request.client.host)
         return {
-            'success': True,
+            'success': final_result,
         }
     except:
         return {

@@ -20,7 +20,7 @@ def fetch_buidlcamp_info(database, user_name=None, ip_address=None):
     '''
     table_name= f'buidlcamp_table'
     my_connection, my_cursor = SO.connect_sql(database)
-    sql_sentence = f"select * from {table_name} where user_name='{user_name}' and ip_address={ip_address}"
+    sql_sentence = f"select * from {table_name} where user_name='{user_name}' and ip_address='{ip_address}'"
     my_cursor.execute(sql_sentence)
     final_result = PD.read_sql(sql_sentence,my_connection)
     return PD.DataFrame(final_result).values.tolist()
@@ -32,6 +32,13 @@ def into_buidlcamp_info(database, user_name, ip_address):
     :param address:
     :return:
     '''
+    table_name= f'buidlcamp_table'
+    my_connection, my_cursor = SO.connect_sql(database)
+    sql_sentence = f"select * from {table_name} where user_name='{user_name}' and ip_address='{ip_address}'"
+    my_cursor.execute(sql_sentence)
+    final_result = PD.read_sql(sql_sentence,my_connection)
+    if(not final_result.empty):
+        return False
     raw_data = PD.DataFrame({
         'user_name': [user_name],
         'user_id': hashlib.sha224(bytes(user_name+str(datetime.datetime.now()).split(".")[0], encoding = "utf8")).hexdigest(),
@@ -47,5 +54,5 @@ def into_buidlcamp_info(database, user_name, ip_address):
 if __name__ == '__main__':
 
     database = CT.DATABASE
-    into_buidlcamp_info(database,'huihao','ip_address')
-    print(fetch_buidlcamp_info(database,'huihao','ip_address'))
+    into_buidlcamp_info(database,'huihao','127.0.0.1')
+    print(fetch_buidlcamp_info(database,'huihao','127.0.0.1'))
