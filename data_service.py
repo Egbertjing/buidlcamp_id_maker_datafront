@@ -36,7 +36,7 @@ def index():
 @app.get('/buidlcamp_get')
 def get_budlecamp(request: Request, database=CT.DATABASE, user_name=None):
     try:
-        final_result = BD.fetch_buidlcamp_info(database, user_name, request.client.host)
+        final_result = BD.fusion_buidlcamp_info(database, user_name, request.client.host)
         return {
             'success': True,
             'data': final_result
