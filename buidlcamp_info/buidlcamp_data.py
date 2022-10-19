@@ -18,7 +18,7 @@ def fusion_buidlcamp_info(database, user_name=None, ip_address=None):
     :param limit:
     :return:
     '''
-    table_name= f'buidlcamp_table'
+    table_name= CT.TABLE
     my_connection, my_cursor = SO.connect_sql(database)
     sql_sentence = f"select * from {table_name} where user_name='{user_name}' and ip_address='{ip_address}'"
     my_cursor.execute(sql_sentence)
@@ -33,7 +33,7 @@ def fusion_buidlcamp_info(database, user_name=None, ip_address=None):
             'address': '0x0000000000000000000000000000000000000000',
             'created_time': [str(datetime.datetime.now()).split(".")[0]]
         })
-        SO.upload_sql_records(database, f'buidlcamp_table', raw_data, False)
+        SO.upload_sql_records(database, CT.TABLE, raw_data, False)
     sql_sentence = f"select * from {table_name} where user_name='{user_name}' and ip_address='{ip_address}'"
     my_cursor.execute(sql_sentence)
     final_result = PD.read_sql(sql_sentence,my_connection)
@@ -45,7 +45,7 @@ def fetch_buidlcamp_info(database, user_name=None, ip_address=None):
     :param limit:
     :return:
     '''
-    table_name= f'buidlcamp_table'
+    table_name= CT.TABLE
     my_connection, my_cursor = SO.connect_sql(database)
     sql_sentence = f"select * from {table_name} where user_name='{user_name}' and ip_address='{ip_address}'"
     my_cursor.execute(sql_sentence)
@@ -58,7 +58,7 @@ def fetch_user_id(database):
     :param limit:
     :return:
     '''
-    table_name= f'buidlcamp_table'
+    table_name= CT.TABLE
     my_connection, my_cursor = SO.connect_sql(database)
     sql_sentence = f"select user_id from {table_name};"
     my_cursor.execute(sql_sentence)
@@ -72,7 +72,7 @@ def into_buidlcamp_info(database, user_name, ip_address):
     :param address:
     :return:
     '''
-    table_name= f'buidlcamp_table'
+    table_name= CT.TABLE
     my_connection, my_cursor = SO.connect_sql(database)
     sql_sentence = f"select * from {table_name} where user_name='{user_name}' and ip_address='{ip_address}'"
     my_cursor.execute(sql_sentence)
@@ -87,7 +87,7 @@ def into_buidlcamp_info(database, user_name, ip_address):
         'created_time': [str(datetime.datetime.now()).split(".")[0]]
     })
     try:
-        SO.upload_sql_records(database, f'buidlcamp_table', raw_data, False)
+        SO.upload_sql_records(database, CT.TABLE, raw_data, False)
         return True
     except:
         return False

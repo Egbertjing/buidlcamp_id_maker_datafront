@@ -13,7 +13,7 @@ def create_buidlcamp_table(database, drop_table=False) -> None:
 
     my_connection, my_cursor = SO.connect_sql(database)
 
-    table_name = f'buidlcamp_table'
+    table_name = CT.TABLE
     if drop_table:
         my_cursor.execute(f"DROP TABLE IF EXISTS {table_name}")
     else:
