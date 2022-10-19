@@ -52,6 +52,19 @@ def fetch_buidlcamp_info(database, user_name=None, ip_address=None):
     final_result = PD.read_sql(sql_sentence,my_connection)
     return PD.DataFrame(final_result).values.tolist()
 
+def fetch_user_id(database):
+    '''
+    :param database:
+    :param limit:
+    :return:
+    '''
+    table_name= f'buidlcamp_table'
+    my_connection, my_cursor = SO.connect_sql(database)
+    sql_sentence = f"select user_id from {table_name};"
+    my_cursor.execute(sql_sentence)
+    final_result = PD.read_sql(sql_sentence,my_connection)
+    return PD.DataFrame(final_result).to_json()
+
 def into_buidlcamp_info(database, user_name, ip_address):
     '''
     :param database:
@@ -82,4 +95,4 @@ def into_buidlcamp_info(database, user_name, ip_address):
 if __name__ == '__main__':
 
     database = CT.DATABASE
-    print(fusion_buidlcamp_info(database,'huihao','127.0.0.1'))
+    print(fetch_user_id(database))
