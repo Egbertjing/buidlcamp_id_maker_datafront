@@ -28,7 +28,7 @@ def fusion_buidlcamp_info(database, user_name=None, ip_address=None):
     else:
         raw_data = PD.DataFrame({
             'user_name': [user_name],
-            'user_id': 'b8496e',# (hashlib.sha224(bytes(user_name+str(datetime.datetime.now()).split(".")[0], encoding = "utf8")).hexdigest())[0:6],
+            'user_id': CT.ID,# (hashlib.sha224(bytes(user_name+str(datetime.datetime.now()).split(".")[0], encoding = "utf8")).hexdigest())[0:6],
             'ip_address': [ip_address],
             'address': '0x0000000000000000000000000000000000000000',
             'created_time': [str(datetime.datetime.now()).split(".")[0]]
@@ -81,7 +81,7 @@ def into_buidlcamp_info(database, user_name, ip_address):
         return False
     raw_data = PD.DataFrame({
         'user_name': [user_name],
-        'user_id': 'b8496e',# (hashlib.sha224(bytes(user_name+str(datetime.datetime.now()).split(".")[0], encoding = "utf8")).hexdigest())[0:6]
+        'user_id': CT.ID,# (hashlib.sha224(bytes(user_name+str(datetime.datetime.now()).split(".")[0], encoding = "utf8")).hexdigest())[0:6]
         'ip_address': [ip_address],
         'address': '0x0000000000000000000000000000000000000000',
         'created_time': [str(datetime.datetime.now()).split(".")[0]]
