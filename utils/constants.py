@@ -5,5 +5,5 @@ PASSWORD = 'furion1234'  # 'furion1234'
 HOST = 'furion.io'
 PORT = 5432
 DATABASE = 'buidlcamp'
-TABLE = 'buidlcamp_table_reuse_'
-ID = '4675c7'
+TABLE = 'buidlcamp_table_reuse_4'
+ID = 'fac990'
